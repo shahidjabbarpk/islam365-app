@@ -1,0 +1,5 @@
+node_modules/
+site/.vercel/
+.vercel/
+indexnow-id.txt
+.claude/
