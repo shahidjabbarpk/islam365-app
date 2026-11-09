@@ -2,16 +2,17 @@
 
 ## ✅ Ho chuka hai
 1. **Website + blog live:** https://islam365-app.vercel.app (Vercel, shahidjabbarpk account, project `islam365-app`)
-   - 13 SEO articles: 8 English, 5 Urdu (Qibla, prayer methods, tasbeeh, Zakat, 99 names, Ramadan 2027, Quran Urdu, azkar, Jumu'ah, namaz reminder, Ayatul Kursi, sehri/iftar)
+   - 43 SEO articles (English + Urdu): namaz ka tarika, Qibla, Tahajjud, Witr, Istikhara, Umrah, Zakat, Ramadan, azkar, duas, janaza, qaza namaz waghera
    - Har article mein Play Store ka download button (UTM tracking ke saath), sitemap.xml, robots.txt, Google ke liye structured data
    - Privacy policy bhi yahan hosted hai: https://islam365-app.vercel.app/privacy.html
 2. **Bing + Yandex** ko IndexNow se saare pages bhej diye (accepted).
 3. **GitHub public page:** https://github.com/shahidjabbarpk/islam365-app (README mein features, screenshots, Play link, blog links + topics). Is se backlink milta hai.
-4. **Social media pack:** `social/img/` mein 8 images (1080×1080) aur `social/POSTS.md` mein Urdu/English captions + 14 din ka schedule.
+4. **Dua cards:** `social/dua-cards/` mein 12 portrait images (WhatsApp status/Instagram).
+5. **Social media pack:** `social/img/` mein 8 images (1080×1080) aur `social/POSTS.md` mein Urdu/English captions + 14 din ka schedule.
 
 ## ✅ 2026-11-09 (Chrome se)
 - Google Search Console verified (shahidjabbarpk), sitemap submitted, 16 pages mile
-- Blogger: https://islam365-guides.blogspot.com, 5 posts live
+- Blogger: https://islam365-guides.blogspot.com, 20 posts live (Search Console mein bhi add, sitemap submitted)
 - Play Console: website link = islam365-app.vercel.app (live); title + short description review mein
 
 ## ⏳ Baqi kaam
