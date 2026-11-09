@@ -5,7 +5,7 @@ const path = require('path');
 const SITE = process.env.SITE_URL || 'https://islam365-app.vercel.app';
 const PLAY = 'https://play.google.com/store/apps/details?id=com.islam365.mza';
 const OUT = path.join(__dirname, 'site');
-const posts = [...require('./content/posts-en'), ...require('./content/posts-ur'), ...require('./content/posts-more')];
+const posts = fs.readdirSync(path.join(__dirname, 'content')).filter((f) => f.endsWith('.js')).sort().flatMap((f) => require('./content/' + f));
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 const playLink = (src) => `${PLAY}&referrer=utm_source%3Dwebsite%26utm_medium%3D${src}`;
