@@ -9,18 +9,18 @@
 3. **GitHub public page:** https://github.com/shahidjabbarpk/islam365-app (README mein features, screenshots, Play link, blog links + topics). Is se backlink milta hai.
 4. **Social media pack:** `social/img/` mein 8 images (1080×1080) aur `social/POSTS.md` mein Urdu/English captions + 14 din ka schedule.
 
-## ⏳ Chrome extension connect hote hi (ya ghar aa kar) ye kaam
-1. **Google Search Console:** property `https://islam365-app.vercel.app` add karein → HTML-tag verification (tag mujhe dein ya main lagaun) → sitemap `sitemap.xml` submit karein. Google indexing ke liye ye sab se zaroori hai.
-2. **Bing Webmaster Tools:** Search Console se import (1 click).
-3. **Play Console → Store settings → Website:** `https://islam365-app.vercel.app` daalein, aur privacy policy URL bhi isi site wala.
-4. **Blogger** (shahidjabbarpk Google account): "islam365app.blogspot.com" banayein aur articles ke chhote versions daalein, jinka link main site pe ho.
-5. **Facebook page "Islam 365"** banayein, `social/POSTS.md` ke mutabiq roz 1 post. Islamic groups mein share karein (group rules ke mutabiq).
-6. **Instagram + TikTok/YouTube Shorts:** app ka 15 second screen-recording (tasbeeh, Qibla, share feature). Ye sab se zyada installs laata hai.
-7. **WhatsApp:** khud apne status pe post 1 lagayein aur family groups mein bhejein. Shuru ke 50–100 installs aur reviews yahin se aate hain.
+## ✅ 2026-11-09 (Chrome se)
+- Google Search Console verified (shahidjabbarpk), sitemap submitted, 16 pages mile
+- Blogger: https://islam365-guides.blogspot.com, 5 posts live
+- Play Console: website link = islam365-app.vercel.app (live); title + short description review mein
+
+## ⏳ Baqi kaam
+1. **Facebook page "Islam 365"** banayein, `social/POSTS.md` ke mutabiq roz 1 post. Islamic groups mein share karein (group rules ke mutabiq).
+2. **Instagram + TikTok/YouTube Shorts:** app ka 15 second screen-recording (tasbeeh, Qibla, share feature). Ye sab se zyada installs laata hai.
+3. **WhatsApp:** khud apne status pe post 1 lagayein aur family groups mein bhejein. Shuru ke 50–100 installs aur reviews yahin se aate hain.
 
 ## 📈 Play Store ASO (listing behtar karna)
-- **Title (30):** abhi `Islam 365: Tasbeeh & Namaz`. Behtar: `Islam 365: Namaz, Quran, Qibla` ("namaz", "quran", "qibla" sab se zyada search hote hain). Tasbeeh short description mein pehle se hai.
-- **Short description (80):** `Prayer times & azan, Quran Urdu, Qibla, tasbeeh, duas & hadith. Free, no ads.`
+- **Title:** `Islam 365: Namaz, Quran, Qibla` (2026-11-09 review ke liye bheja). Short description bhi update hui. Play "free/ad-free" jaise words ko promotion samajhta hai, short description mein na daalein.
 - Full description mein ye words 3–5 baar natural tareeqe se aane chahiye: *namaz timing, prayer times, azan, quran urdu tarjuma, qibla direction, tasbeeh counter, islamic app*.
 - **Reviews:** app pehle se ek dafa review maangti hai. Family/dost asli use kar ke 5-star + likhi hui review dein (fake reviews se account ban hota hai, woh nahi karna).
 - **Urdu store listing** (Play Console → Translations → Urdu) add karein. Pakistan mein Urdu listing pe conversion behtar hota hai.
