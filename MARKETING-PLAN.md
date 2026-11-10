@@ -2,7 +2,7 @@
 
 ## ✅ Ho chuka hai
 1. **Website + blog live:** https://islam365-app.vercel.app (Vercel, shahidjabbarpk account, project `islam365-app`)
-   - 71 SEO articles + 25 shehron ke namaz timings pages + 25 shehron ke Ramzan 2027 sehri/iftar timetables (English + Urdu): namaz ka tarika, Qibla, Tahajjud, Witr, Istikhara, Umrah, Zakat, Ramadan, azkar, duas, janaza, qaza namaz waghera
+   - 71 SEO articles; 70 shehron ke namaz timings, Qibla direction aur Ramzan 2027 pages (210); tools: online tasbeeh, Zakat calculator, Hijri date today. Sitemap 287 URLs.
    - Har article mein Play Store ka download button (UTM tracking ke saath), sitemap.xml, robots.txt, Google ke liye structured data
    - Privacy policy bhi yahan hosted hai: https://islam365-app.vercel.app/privacy.html
 2. **Bing + Yandex** ko IndexNow se saare pages bhej diye (accepted).
@@ -12,7 +12,7 @@
 
 ## ✅ 2026-11-09 (Chrome se)
 - Google Search Console verified (shahidjabbarpk), sitemap submitted, 16 pages mile
-- Blogger: https://islam365-guides.blogspot.com, 37 posts live + sidebar "Get the app" box (Search Console mein bhi add, sitemap submitted)
+- Blogger: https://islam365-guides.blogspot.com, 39 posts live + sidebar "Get the app" box (Search Console mein bhi add, sitemap submitted)
 - Play Console: website link = islam365-app.vercel.app (live); title + short description review mein
 
 ## ⏳ Baqi kaam
