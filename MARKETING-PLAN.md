@@ -2,7 +2,7 @@
 
 ## ✅ Ho chuka hai
 1. **Website + blog live:** https://islam365-app.vercel.app (Vercel, shahidjabbarpk account, project `islam365-app`)
-   - 43 SEO articles (English + Urdu): namaz ka tarika, Qibla, Tahajjud, Witr, Istikhara, Umrah, Zakat, Ramadan, azkar, duas, janaza, qaza namaz waghera
+   - 49 SEO articles (English + Urdu): namaz ka tarika, Qibla, Tahajjud, Witr, Istikhara, Umrah, Zakat, Ramadan, azkar, duas, janaza, qaza namaz waghera
    - Har article mein Play Store ka download button (UTM tracking ke saath), sitemap.xml, robots.txt, Google ke liye structured data
    - Privacy policy bhi yahan hosted hai: https://islam365-app.vercel.app/privacy.html
 2. **Bing + Yandex** ko IndexNow se saare pages bhej diye (accepted).
@@ -12,7 +12,7 @@
 
 ## ✅ 2026-11-09 (Chrome se)
 - Google Search Console verified (shahidjabbarpk), sitemap submitted, 16 pages mile
-- Blogger: https://islam365-guides.blogspot.com, 20 posts live (Search Console mein bhi add, sitemap submitted)
+- Blogger: https://islam365-guides.blogspot.com, 23 posts live (Search Console mein bhi add, sitemap submitted)
 - Play Console: website link = islam365-app.vercel.app (live); title + short description review mein
 
 ## ⏳ Baqi kaam
