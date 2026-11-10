@@ -147,7 +147,8 @@ ${others.length ? `<h2>${ur ? 'مزید پڑھیں' : 'Read next'}</h2><div clas
 // ---------- Prayer time city pages ----------
 const PT = require('./lib/praytimes');
 const cities = require('./lib/cities');
-const BUILD_DAY = new Date(Date.UTC(2026, 10, 10));
+const _n = new Date(Date.now() + 5 * 36e5); // build day in Pakistan time
+const BUILD_DAY = new Date(Date.UTC(_n.getUTCFullYear(), _n.getUTCMonth(), _n.getUTCDate()));
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const cityUrls = [];
 for (const [slug, name, urName, country, lat, lng, tz, mkey] of cities) {
@@ -206,7 +207,7 @@ ${Object.entries(byCountry).map(([country, list]) => `<h2>${country}</h2><div cl
 
 // ---------- sitemap / robots / vercel ----------
 const urls = [`${SITE}/`, `${SITE}/blog/`, ...posts.map((p) => `${SITE}/blog/${p.slug}/`), `${SITE}/namaz-timings/`, ...cityUrls, `${SITE}/privacy.html`];
-write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${u}</loc><lastmod>2026-11-10</lastmod></url>`).join('\n')}\n</urlset>\n`);
+write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${u}</loc><lastmod>${BUILD_DAY.toISOString().slice(0, 10)}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 write('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 fs.copyFileSync(path.join(__dirname, 'lib', 'praytimes.js'), path.join(OUT, 'praytimes.js'));
 console.log(`built ${posts.length} posts -> ${OUT}`);
