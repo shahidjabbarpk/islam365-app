@@ -24,6 +24,9 @@
 </p>
 
 ## Guides (English)
+- [Duas for Rizq: Asking Allah for Halal Provision and Barakah](https://islam365-app.vercel.app/blog/dua-for-rizq-provision-halal-income/)
+- [Sayyidul Istighfar: The Best Dua for Forgiveness (Arabic, English, Meaning)](https://islam365-app.vercel.app/blog/sayyidul-istighfar-english-meaning/)
+- [Duas for Studying and Exams: For Knowledge, Memory and Calm](https://islam365-app.vercel.app/blog/dua-before-exam-for-studying/)
 - [Tahajjud Prayer: Best Time, How to Pray and How to Wake Up for It](https://islam365-app.vercel.app/blog/tahajjud-prayer-time-how-to-pray/)
 - [Salat al-Istikhara: How to Pray and the Dua for Guidance](https://islam365-app.vercel.app/blog/istikhara-dua-how-to-pray/)
 - [The 12 Islamic Months: Names, Meanings and Important Dates in the Hijri Calendar](https://islam365-app.vercel.app/blog/islamic-months-hijri-calendar-names-meaning/)
@@ -57,6 +60,8 @@
 - [Read the Quran with Urdu Translation Offline on Your Phone](https://islam365-app.vercel.app/blog/quran-with-urdu-translation-offline-app/)
 
 ## رہنمائی (اردو)
+- [رزق میں برکت کی دعائیں اور اعمال](https://islam365-app.vercel.app/blog/rizq-mein-barkat-ki-dua/)
+- [سید الاستغفار: مکمل عربی متن، اردو ترجمہ اور فضیلت](https://islam365-app.vercel.app/blog/sayyidul-istighfar-urdu-tarjuma/)
 - [اذان کے بعد کی دعا: عربی متن، اردو ترجمہ اور فضیلت](https://islam365-app.vercel.app/blog/azan-ke-baad-ki-dua/)
 - [سونے کی سنتیں اور دعائیں: رات کو سونے سے پہلے کے مسنون اعمال](https://islam365-app.vercel.app/blog/sone-ki-sunnatein-aur-duain/)
 - [وضو کا مسنون طریقہ: فرائض، سنتیں اور وضو کے بعد کی دعا](https://islam365-app.vercel.app/blog/wuzu-ka-tarika-faraiz-sunnatein/)
