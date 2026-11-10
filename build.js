@@ -101,7 +101,7 @@ write('index.html', page({
 <a class="btn" href="${playLink('hero')}" rel="noopener">▶ Get it on Google Play</a></section>
 <div class="shots">${shots.map((s) => `<img src="/img/${s}.png" alt="Islam 365 screenshot ${s.slice(3)}" loading="lazy">`).join('')}</div>
 <section class="feat">${features.map(([t, d]) => `<div><b>${t}</b>${d}</div>`).join('')}</section>
-<div class="wrap"><h2>Free Islamic tools</h2><div class="list"><a href="/quran/"><b>📖 Quran: all 114 surahs</b><br><small>Arabic text; read with Urdu translation in the app</small></a><a href="/namaz-timings/"><b>🕌 Prayer times today</b><br><small>Namaz timings for 70+ cities with a 30-day timetable</small></a><a href="/qibla-direction/"><b>🧭 Qibla direction by city</b><br><small>Angle from north and distance to the Kaaba</small></a><a href="/ramadan-2027/"><b>🌙 Ramadan 2027 sehri &amp; iftar</b><br><small>Full timetables by city</small></a><a href="/hijri-date-today/"><b>📅 Hijri date today</b><br><small>Today's Islamic date</small></a><a href="/online-tasbeeh-counter/"><b>📿 Online tasbeeh counter</b><br><small>Tap to count your zikr</small></a><a href="/zakat-calculator/"><b>💰 Zakat calculator</b><br><small>Gold, silver, cash and nisab</small></a></div><h2>From the blog</h2><div class="list">
+<div class="wrap"><h2>Free Islamic tools</h2><div class="list"><a href="/hadith-of-the-day/"><b>📜 Hadith of the day</b><br><small>365 hadith from Sahih al-Bukhari in English and Urdu</small></a><a href="/quran/"><b>📖 Quran: all 114 surahs</b><br><small>Arabic text; read with Urdu translation in the app</small></a><a href="/namaz-timings/"><b>🕌 Prayer times today</b><br><small>Namaz timings for 70+ cities with a 30-day timetable</small></a><a href="/qibla-direction/"><b>🧭 Qibla direction by city</b><br><small>Angle from north and distance to the Kaaba</small></a><a href="/ramadan-2027/"><b>🌙 Ramadan 2027 sehri &amp; iftar</b><br><small>Full timetables by city</small></a><a href="/hijri-date-today/"><b>📅 Hijri date today</b><br><small>Today's Islamic date</small></a><a href="/online-tasbeeh-counter/"><b>📿 Online tasbeeh counter</b><br><small>Tap to count your zikr</small></a><a href="/zakat-calculator/"><b>💰 Zakat calculator</b><br><small>Gold, silver, cash and nisab</small></a></div><h2>From the blog</h2><div class="list">
 ${latest.map((p) => `<a href="/blog/${p.slug}/" lang="${p.lang}" dir="${p.lang === 'ur' ? 'rtl' : 'ltr'}"><b>${p.title}</b><br><small>${p.description}</small></a>`).join('\n')}
 </div><p><a href="/blog/">All articles →</a></p>
 <div class="cta"><b>Ad-free. No sign-up. Your data stays on your phone.</b><br><a class="btn g" href="${playLink('home_bottom')}">Download Islam 365</a></div></div>`,
@@ -151,10 +151,11 @@ const BUILD_DAY = new Date(Date.UTC(_bn.getUTCFullYear(), _bn.getUTCMonth(), _bn
 const cityUrls = require('./lib/pages-cities')({ write, page, playLink, SITE, MONTHS });
 const toolUrls = require('./lib/pages-tools')({ write, page, playLink, SITE });
 const quranUrls = require('./lib/pages-quran')({ write, page, playLink, SITE });
+const hadithUrls = require('./lib/pages-hadith')({ write, page, playLink, SITE });
 const ramadanUrls = [];
 
 // ---------- sitemap / robots / vercel ----------
-const urls = [`${SITE}/`, `${SITE}/blog/`, ...posts.map((p) => `${SITE}/blog/${p.slug}/`), ...cityUrls, ...toolUrls, ...quranUrls, `${SITE}/privacy.html`];
+const urls = [`${SITE}/`, `${SITE}/blog/`, ...posts.map((p) => `${SITE}/blog/${p.slug}/`), ...cityUrls, ...toolUrls, ...quranUrls, ...hadithUrls, `${SITE}/privacy.html`];
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${u}</loc><lastmod>${BUILD_DAY.toISOString().slice(0, 10)}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 write('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 fs.copyFileSync(path.join(__dirname, 'lib', 'praytimes.js'), path.join(OUT, 'praytimes.js'));

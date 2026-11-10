@@ -3,3 +3,4 @@ site/.vercel/
 .vercel/
 indexnow-id.txt
 .claude/
+.indexnow.json
