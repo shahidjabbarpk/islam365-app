@@ -23,10 +23,15 @@
 <img src="site/img/01-home.png" width="200"> <img src="site/img/02-namaz.png" width="200"> <img src="site/img/03-quran.png" width="200"> <img src="site/img/05-tasbeeh.png" width="200">
 </p>
 
+## Prayer times by city
+[Karachi](https://islam365-app.vercel.app/namaz-timings/karachi/) · [Lahore](https://islam365-app.vercel.app/namaz-timings/lahore/) · [Islamabad](https://islam365-app.vercel.app/namaz-timings/islamabad/) · [Rawalpindi](https://islam365-app.vercel.app/namaz-timings/rawalpindi/) · [Faisalabad](https://islam365-app.vercel.app/namaz-timings/faisalabad/) · [Multan](https://islam365-app.vercel.app/namaz-timings/multan/) · [Peshawar](https://islam365-app.vercel.app/namaz-timings/peshawar/) · [Quetta](https://islam365-app.vercel.app/namaz-timings/quetta/) · [Hyderabad (Sindh)](https://islam365-app.vercel.app/namaz-timings/hyderabad/) · [Sialkot](https://islam365-app.vercel.app/namaz-timings/sialkot/) · [Gujranwala](https://islam365-app.vercel.app/namaz-timings/gujranwala/) · [Bahawalpur](https://islam365-app.vercel.app/namaz-timings/bahawalpur/) · [Sargodha](https://islam365-app.vercel.app/namaz-timings/sargodha/) · [Makkah](https://islam365-app.vercel.app/namaz-timings/makkah/) · [Madinah](https://islam365-app.vercel.app/namaz-timings/madinah/) · [Riyadh](https://islam365-app.vercel.app/namaz-timings/riyadh/) · [Jeddah](https://islam365-app.vercel.app/namaz-timings/jeddah/) · [Dammam](https://islam365-app.vercel.app/namaz-timings/dammam/) · [Dubai](https://islam365-app.vercel.app/namaz-timings/dubai/) · [Abu Dhabi](https://islam365-app.vercel.app/namaz-timings/abu-dhabi/) · [Sharjah](https://islam365-app.vercel.app/namaz-timings/sharjah/) · [Delhi](https://islam365-app.vercel.app/namaz-timings/delhi/) · [Mumbai](https://islam365-app.vercel.app/namaz-timings/mumbai/) · [Lucknow](https://islam365-app.vercel.app/namaz-timings/lucknow/) · [Dhaka](https://islam365-app.vercel.app/namaz-timings/dhaka/)
+
 ## Guides (English)
 - [Duas for Rizq: Asking Allah for Halal Provision and Barakah](https://islam365-app.vercel.app/blog/dua-for-rizq-provision-halal-income/)
 - [Sayyidul Istighfar: The Best Dua for Forgiveness (Arabic, English, Meaning)](https://islam365-app.vercel.app/blog/sayyidul-istighfar-english-meaning/)
 - [Duas for Studying and Exams: For Knowledge, Memory and Calm](https://islam365-app.vercel.app/blog/dua-before-exam-for-studying/)
+- [How to Get Azan and Prayer Time Notifications on Your Android Phone](https://islam365-app.vercel.app/blog/azan-notification-android-phone/)
+- [The Prayer App Checklist for Travellers and Umrah Pilgrims](https://islam365-app.vercel.app/blog/prayer-app-for-travellers-umrah/)
 - [Tahajjud Prayer: Best Time, How to Pray and How to Wake Up for It](https://islam365-app.vercel.app/blog/tahajjud-prayer-time-how-to-pray/)
 - [Salat al-Istikhara: How to Pray and the Dua for Guidance](https://islam365-app.vercel.app/blog/istikhara-dua-how-to-pray/)
 - [The 12 Islamic Months: Names, Meanings and Important Dates in the Hijri Calendar](https://islam365-app.vercel.app/blog/islamic-months-hijri-calendar-names-meaning/)
@@ -62,6 +67,9 @@
 ## رہنمائی (اردو)
 - [رزق میں برکت کی دعائیں اور اعمال](https://islam365-app.vercel.app/blog/rizq-mein-barkat-ki-dua/)
 - [سید الاستغفار: مکمل عربی متن، اردو ترجمہ اور فضیلت](https://islam365-app.vercel.app/blog/sayyidul-istighfar-urdu-tarjuma/)
+- [Islam 365 ایپ کیسے استعمال کریں: مکمل رہنمائی](https://islam365-app.vercel.app/blog/islam-365-app-kaise-istemal-karein/)
+- [تہجد کا وقت اور طریقہ: رات کا آخری تہائی کیسے معلوم کریں](https://islam365-app.vercel.app/blog/tahajjud-ka-waqt-aur-tarika/)
+- [وتر کی نماز کا طریقہ اور دعائے قنوت (حنفی)](https://islam365-app.vercel.app/blog/witr-ki-namaz-ka-tarika/)
 - [اذان کے بعد کی دعا: عربی متن، اردو ترجمہ اور فضیلت](https://islam365-app.vercel.app/blog/azan-ke-baad-ki-dua/)
 - [سونے کی سنتیں اور دعائیں: رات کو سونے سے پہلے کے مسنون اعمال](https://islam365-app.vercel.app/blog/sone-ki-sunnatein-aur-duain/)
 - [وضو کا مسنون طریقہ: فرائض، سنتیں اور وضو کے بعد کی دعا](https://islam365-app.vercel.app/blog/wuzu-ka-tarika-faraiz-sunnatein/)
