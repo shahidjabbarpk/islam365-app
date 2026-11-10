@@ -12,7 +12,7 @@
 
 ## ✅ 2026-11-09 (Chrome se)
 - Google Search Console verified (shahidjabbarpk), sitemap submitted, 16 pages mile
-- Blogger: https://islam365-guides.blogspot.com, 39 posts live + sidebar "Get the app" box (Search Console mein bhi add, sitemap submitted)
+- Blogger: https://islam365-guides.blogspot.com, 41 posts live + sidebar "Get the app" box (Search Console mein bhi add, sitemap submitted)
 - Play Console: website link = islam365-app.vercel.app (live); title + short description review mein
 
 ## ⏳ Baqi kaam
