@@ -29,7 +29,8 @@ td,th{border:1px solid #d9e5de;padding:8px 10px;text-align:start}th{background:#
 .cta{background:#e8f3ed;border-radius:16px;padding:22px;text-align:center;margin-top:36px}
 .ar{font-family:'Amiri','Noto Naskh Arabic',serif;font-size:1.45rem;direction:rtl;line-height:2.2;background:#fff;border-radius:10px;padding:10px 14px}
 [lang=ur] article,[lang=ur] .list{font-family:'Noto Nastaliq Urdu','Jameel Noori Nastaleeq',serif;line-height:2.3;font-size:1.12rem}
-footer{text-align:center;color:var(--mut);font-size:.9rem;padding:30px 20px}
+footer{text-align:center;color:var(--mut);font-size:.9rem;padding:30px 20px 90px}
+.topcta{display:flex;align-items:center;gap:12px;background:#e8f3ed;border:1px solid #cfe6da;border-radius:14px;padding:12px 14px;margin:14px 0 6px}.topcta img{width:44px;height:44px;border-radius:10px}.topcta div{flex:1;font-size:.95rem;line-height:1.6}[lang=ur] .topcta div{font-size:.9rem;line-height:2}.topcta a{background:var(--g);color:#fff;text-decoration:none;font-weight:700;padding:9px 14px;border-radius:999px;white-space:nowrap}.midcta{border-inline-start:4px solid var(--g);background:#fff;border-radius:10px;padding:12px 16px;margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.06)}.midcta a{font-weight:700}.sticky{position:fixed;left:0;right:0;bottom:0;z-index:9;background:#0d3449;color:#fff;display:flex;align-items:center;gap:10px;padding:10px 14px;box-shadow:0 -2px 10px rgba(0,0,0,.2)}.sticky img{width:36px;height:36px;border-radius:8px}.sticky span{flex:1;font-size:.9rem;line-height:1.3}.sticky a{background:#fff;color:var(--gd);font-weight:700;text-decoration:none;padding:9px 16px;border-radius:999px;white-space:nowrap}@media(min-width:900px){.sticky{left:auto;right:20px;bottom:20px;border-radius:16px;max-width:380px}}
 @media(max-width:600px){.hero h1{font-size:1.7rem}.shots img{height:360px}header nav{gap:12px;font-size:.9rem}}`;
 
 function page({ title, description, keywords = '', lang = 'en', canonical, body, jsonld, image = `${SITE}/img/feature-graphic.png` }) {
@@ -57,6 +58,9 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</script
 <header><div class="in" dir="ltr"><img src="/img/icon.png" alt="Islam 365 icon"><a href="/">Islam 365</a>
 <nav><a href="/blog/">Blog</a><a href="${playLink('header')}" rel="noopener">Download</a></nav></div></header>
 ${body}
+${lang === 'ur'
+  ? `<div class="sticky" dir="rtl"><img src="/img/icon.png" alt=""><span><b>Islam 365</b><br>نماز، قرآن، تسبیح · مفت</span><a href="${playLink('sticky')}" rel="noopener">انسٹال کریں</a></div>`
+  : `<div class="sticky"><img src="/img/icon.png" alt=""><span><b>Islam 365</b><br>Prayer times, Quran, tasbeeh · Free</span><a href="${playLink('sticky')}" rel="noopener">Install</a></div>`}
 <footer dir="ltr">© 2026 Islam 365 · Free · No ads · <a href="/blog/">Blog</a> · <a href="/privacy.html">Privacy policy</a> · <a href="${PLAY}">Google Play</a></footer>
 </body></html>`;
 }
@@ -113,6 +117,12 @@ ${posts.map((p) => `<a href="/blog/${p.slug}/" lang="${p.lang}" dir="${p.lang ==
 </div></div>`,
 }));
 
+function midCta(body, ur) {
+  const box = `<div class="midcta">${ur ? '📲 روزانہ یاد رکھنے کے لیے: <a href="' + playLink('blog_mid') + '" rel="noopener">Islam 365 مفت ڈاؤن لوڈ کریں</a>، ہر نماز سے پہلے یاد دہانی اور یہ دعائیں ایک ٹچ پر۔' : '📲 Never forget it: <a href="' + playLink('blog_mid') + '" rel="noopener">get Islam 365 free</a> for reminders before every prayer and these duas one tap away.'}</div>`;
+  const i = body.indexOf('<h2>', body.indexOf('<h2>') + 1);
+  return i > 0 ? body.slice(0, i) + box + body.slice(i) : body + box;
+}
+
 // ---------- Posts ----------
 for (const p of posts) {
   const url = `${SITE}/blog/${p.slug}/`;
@@ -123,7 +133,9 @@ for (const p of posts) {
     jsonld: { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, description: p.description,
       datePublished: p.date, inLanguage: p.lang, mainEntityOfPage: url, image: `${SITE}/img/feature-graphic.png`,
       author: { '@type': 'Organization', name: 'Islam 365' }, publisher: { '@type': 'Organization', name: 'Islam 365', logo: { '@type': 'ImageObject', url: `${SITE}/img/icon.png` } } },
-    body: `<div class="wrap"><article><h1>${p.title}</h1><small style="color:#5b6b63">${p.date}</small>${p.body}</article>
+    body: `<div class="wrap"><article><h1>${p.title}</h1><small style="color:#5b6b63">${p.date}</small>
+<div class="topcta"><img src="/img/icon.png" alt="Islam 365"><div>${ur ? '<b>Islam 365</b> ایپ: نماز، قرآن اور دعائیں، مفت' : 'All of this is in the <b>Islam 365</b> app: prayer times, azan reminders, Quran and duas. Free, no ads.'}</div><a href="${playLink('blog_top')}" rel="noopener">${ur ? 'انسٹال کریں' : 'Install'}</a></div>
+${midCta(p.body, ur)}</article>
 <div class="cta"><b>${ur ? 'Islam 365: نماز کے اوقات، قرآن، تسبیح اور دعائیں — مفت، بغیر اشتہار' : 'Islam 365: prayer times, Quran, tasbeeh and duas. Free, no ads.'}</b><br>
 <a class="btn g" href="${playLink('blog_' + p.slug.slice(0, 30))}">${ur ? 'گوگل پلے سے ڈاؤن لوڈ کریں' : 'Download free on Google Play'}</a></div>
 ${others.length ? `<h2>${ur ? 'مزید پڑھیں' : 'Read next'}</h2><div class="list">${others.map((o) => `<a href="/blog/${o.slug}/"><b>${o.title}</b></a>`).join('')}</div>` : ''}
