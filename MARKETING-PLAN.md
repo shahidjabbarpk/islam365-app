@@ -2,7 +2,7 @@
 
 ## ✅ Ho chuka hai
 1. **Website + blog live:** https://islam365-app.vercel.app (Vercel, shahidjabbarpk account, project `islam365-app`)
-   - 54 SEO articles (English + Urdu): namaz ka tarika, Qibla, Tahajjud, Witr, Istikhara, Umrah, Zakat, Ramadan, azkar, duas, janaza, qaza namaz waghera
+   - 59 SEO articles (English + Urdu): namaz ka tarika, Qibla, Tahajjud, Witr, Istikhara, Umrah, Zakat, Ramadan, azkar, duas, janaza, qaza namaz waghera
    - Har article mein Play Store ka download button (UTM tracking ke saath), sitemap.xml, robots.txt, Google ke liye structured data
    - Privacy policy bhi yahan hosted hai: https://islam365-app.vercel.app/privacy.html
 2. **Bing + Yandex** ko IndexNow se saare pages bhej diye (accepted).
@@ -12,7 +12,7 @@
 
 ## ✅ 2026-11-09 (Chrome se)
 - Google Search Console verified (shahidjabbarpk), sitemap submitted, 16 pages mile
-- Blogger: https://islam365-guides.blogspot.com, 26 posts live (Search Console mein bhi add, sitemap submitted)
+- Blogger: https://islam365-guides.blogspot.com, 29 posts live (Search Console mein bhi add, sitemap submitted)
 - Play Console: website link = islam365-app.vercel.app (live); title + short description review mein
 
 ## ⏳ Baqi kaam
@@ -24,7 +24,7 @@
 - **Title:** `Islam 365: Namaz, Quran, Qibla` (2026-11-09 review ke liye bheja). Short description bhi update hui. Play "free/ad-free" jaise words ko promotion samajhta hai, short description mein na daalein.
 - Full description mein ye words 3–5 baar natural tareeqe se aane chahiye: *namaz timing, prayer times, azan, quran urdu tarjuma, qibla direction, tasbeeh counter, islamic app*.
 - **Reviews:** app pehle se ek dafa review maangti hai. Family/dost asli use kar ke 5-star + likhi hui review dein (fake reviews se account ban hota hai, woh nahi karna).
-- **Urdu store listing** (Play Console → Translations → Urdu) add karein. Pakistan mein Urdu listing pe conversion behtar hota hai.
+- **Urdu store listing:** Play Console mein add aur save ho chuki hai (2026-11-10), lekin abhi review ke liye nahi bheji. Title wala review khatam hone ke baad Publishing overview se "Submit 1 change" karna hai, warna pichla review restart ho jata.
 
 ## 🚫 Jo main nahi karunga
 - Doosri websites ya logon ke posts pe spam comments: account ban hote hain, Google bhi site ko neeche kar deta hai.
