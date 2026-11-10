@@ -56,7 +56,7 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</script
 </head>
 <body>
 <header><div class="in" dir="ltr"><img src="/img/icon.png" alt="Islam 365 icon"><a href="/">Islam 365</a>
-<nav><a href="/namaz-timings/">Prayer times</a><a href="/ramadan-2027/">Ramadan</a><a href="/blog/">Blog</a><a href="${playLink('header')}" rel="noopener">Download</a></nav></div></header>
+<nav><a href="/namaz-timings/">Prayer times</a><a href="/qibla-direction/">Qibla</a><a href="/ramadan-2027/">Ramadan</a><a href="/blog/">Blog</a><a href="${playLink('header')}" rel="noopener">Download</a></nav></div></header>
 ${body}
 ${lang === 'ur'
   ? `<div class="sticky" dir="rtl"><img src="/img/icon.png" alt=""><span><b>Islam 365</b><br>نماز، قرآن، تسبیح · مفت</span><a href="${playLink('sticky')}" rel="noopener">انسٹال کریں</a></div>`
@@ -101,7 +101,7 @@ write('index.html', page({
 <a class="btn" href="${playLink('hero')}" rel="noopener">▶ Get it on Google Play</a></section>
 <div class="shots">${shots.map((s) => `<img src="/img/${s}.png" alt="Islam 365 screenshot ${s.slice(3)}" loading="lazy">`).join('')}</div>
 <section class="feat">${features.map(([t, d]) => `<div><b>${t}</b>${d}</div>`).join('')}</section>
-<div class="wrap"><h2>From the blog</h2><div class="list">
+<div class="wrap"><h2>Free Islamic tools</h2><div class="list"><a href="/namaz-timings/"><b>🕌 Prayer times today</b><br><small>Namaz timings for 70+ cities with a 30-day timetable</small></a><a href="/qibla-direction/"><b>🧭 Qibla direction by city</b><br><small>Angle from north and distance to the Kaaba</small></a><a href="/ramadan-2027/"><b>🌙 Ramadan 2027 sehri &amp; iftar</b><br><small>Full timetables by city</small></a><a href="/hijri-date-today/"><b>📅 Hijri date today</b><br><small>Today's Islamic date</small></a><a href="/online-tasbeeh-counter/"><b>📿 Online tasbeeh counter</b><br><small>Tap to count your zikr</small></a><a href="/zakat-calculator/"><b>💰 Zakat calculator</b><br><small>Gold, silver, cash and nisab</small></a></div><h2>From the blog</h2><div class="list">
 ${latest.map((p) => `<a href="/blog/${p.slug}/" lang="${p.lang}" dir="${p.lang === 'ur' ? 'rtl' : 'ltr'}"><b>${p.title}</b><br><small>${p.description}</small></a>`).join('\n')}
 </div><p><a href="/blog/">All articles →</a></p>
 <div class="cta"><b>Ad-free. No sign-up. Your data stays on your phone.</b><br><a class="btn g" href="${playLink('home_bottom')}">Download Islam 365</a></div></div>`,
@@ -144,114 +144,16 @@ ${others.length ? `<h2>${ur ? 'مزید پڑھیں' : 'Read next'}</h2><div clas
 }
 
 
-// ---------- Prayer time city pages ----------
-const PT = require('./lib/praytimes');
-const cities = require('./lib/cities');
-const _n = new Date(Date.now() + 5 * 36e5); // build day in Pakistan time
-const BUILD_DAY = new Date(Date.UTC(_n.getUTCFullYear(), _n.getUTCMonth(), _n.getUTCDate()));
+// ---------- City pages (prayer times, Ramadan, Qibla) and tools ----------
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const cityUrls = [];
-for (const [slug, name, urName, country, lat, lng, tz, mkey] of cities) {
-  const m = PT.METHODS[mkey];
-  const rows = [];
-  for (let i = 0; i < 30; i++) {
-    const d = new Date(BUILD_DAY.getTime() + i * 864e5);
-    const t = PT.compute(d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate(), lat, lng, tz, m);
-    rows.push(`<tr data-d="${d.toISOString().slice(0, 10)}"><td>${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]}</td>${['fajr', 'sunrise', 'dhuhr', 'asr', 'maghrib', 'isha'].map((k) => `<td>${PT.fmt(t[k])}</td>`).join('')}</tr>`);
-  }
-  const url = `${SITE}/namaz-timings/${slug}/`;
-  cityUrls.push(url);
-  const near = cities.filter((c) => c[3] === country && c[0] !== slug).slice(0, 8);
-  const cta = playLink('city_' + slug);
-  write(`namaz-timings/${slug}/index.html`, page({
-    title: `${name} Prayer Times Today – Namaz Timings ${name} | Islam 365`,
-    description: `Today's prayer times in ${name}, ${country}: Fajr, Sunrise, Dhuhr, Asr, Maghrib and Isha (${m.name}), plus the full 30-day namaz timetable. ${urName} نماز کے اوقات۔`,
-    keywords: `${name.toLowerCase()} prayer times, namaz timing ${name.toLowerCase()}, ${name.toLowerCase()} namaz time today, azan time ${name.toLowerCase()}, ${urName} نماز کے اوقات`,
-    canonical: url,
-    body: `<div class="wrap">
-<h1>${name} Prayer Times Today</h1>
-<p style="font-size:1.2rem;margin-top:-8px" dir="rtl" lang="ur">${urName} میں آج نماز کے اوقات</p>
-<div id="today" class="cta" style="text-align:start;margin-top:10px"><b id="next">Today in ${name}</b><table id="tt" style="margin-top:10px"></table></div>
-<div class="topcta"><img src="/img/icon.png" alt="Islam 365"><div>Get <b>azan reminders for ${name}</b> before every prayer with the free Islam 365 app. No ads.</div><a href="${cta}" rel="noopener">Install</a></div>
-<h2>${name} namaz timetable (next 30 days)</h2>
-<table class="month"><tr><th>Date</th><th>Fajr</th><th>Sunrise</th><th>Dhuhr</th><th>Asr</th><th>Maghrib</th><th>Isha</th></tr>${rows.join('')}</table>
-<p><small>Calculation: ${m.name}. Times can differ by 1–2 minutes from your local masjid; follow your masjid's timetable for jama'at.</small></p>
-<div class="midcta">📲 These times change every day. <a href="${cta}" rel="noopener">Install Islam 365</a> to get the exact times for your street, a reminder before each prayer, Qibla direction and the Quran, all free.</div>
-<h2>About prayer times in ${name}</h2>
-<p>Fajr begins at dawn, Dhuhr just after midday, Asr in the afternoon${m.asr === 2 ? ' (Hanafi method, when an object\'s shadow is twice its length, as followed in most masajid in the region)' : ''}, Maghrib at sunset and Isha when the twilight disappears. Read more: <a href="/blog/prayer-time-calculation-methods-hanafi-shafi-asr/">why prayer times differ between apps</a>.</p>
-${near.length ? `<h2>Prayer times in other cities in ${country}</h2><p>${near.map((c) => `<a href="/namaz-timings/${c[0]}/">${c[1]}</a>`).join(' · ')}</p>` : ''}
-<p><a href="/namaz-timings/">All cities →</a></p>
-</div>
-<style>table.month td,table.month th{padding:6px 5px;font-size:.88rem;text-align:center}table.month tr.today{background:#fff4c8;font-weight:700}#tt td{padding:6px 10px}</style>
-<script src="/praytimes.js"></script>
-<script>(function(){var lat=${lat},lng=${lng},tz=${tz},m=PrayTimes.METHODS['${mkey}'];
-var now=new Date(Date.now()+tz*36e5),y=now.getUTCFullYear(),mo=now.getUTCMonth()+1,d=now.getUTCDate();
-var t=PrayTimes.compute(y,mo,d,lat,lng,tz,m),names={fajr:'Fajr',sunrise:'Sunrise',dhuhr:'Dhuhr',asr:'Asr',maghrib:'Maghrib',isha:'Isha'},h=now.getUTCHours()+now.getUTCMinutes()/60,next=null,html='';
-for(var k in names){html+='<tr><td>'+names[k]+'</td><td><b>'+PrayTimes.fmt(t[k])+'</b></td></tr>';if(!next&&k!=='sunrise'&&t[k]>h)next=k;}
-document.getElementById('tt').innerHTML=html;
-var iso=now.toISOString().slice(0,10),r=document.querySelector('tr[data-d="'+iso+'"]');if(r)r.className='today';
-if(next){var mins=Math.round((t[next]-h)*60);document.getElementById('next').textContent='Next in ${name}: '+names[next]+' at '+PrayTimes.fmt(t[next])+' (in '+Math.floor(mins/60)+'h '+(mins%60)+'m)';}
-else document.getElementById('next').textContent='Today in ${name} ('+d+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][mo-1]+')';})();</script>`,
-  }));
-}
-const byCountry = {};
-for (const c of cities) (byCountry[c[3]] = byCountry[c[3]] || []).push(c);
-write('namaz-timings/index.html', page({
-  title: 'Namaz Timings Today: Prayer Times for Pakistan, Saudi Arabia, UAE, India | Islam 365',
-  description: 'Accurate prayer times today for Karachi, Lahore, Islamabad, Makkah, Madinah, Dubai, Delhi and more, with a 30-day namaz timetable for each city.',
-  keywords: 'namaz timings, prayer times today, namaz time pakistan, prayer times saudi arabia, azan time',
-  canonical: `${SITE}/namaz-timings/`,
-  body: `<div class="wrap"><h1>Namaz Timings Today</h1><p>Choose your city for today's prayer times and a 30-day timetable. For your exact location and reminders before every prayer, <a href="${playLink('city_index')}">install Islam 365</a> (free).</p>
-${Object.entries(byCountry).map(([country, list]) => `<h2>${country}</h2><div class="list">${list.map((c) => `<a href="/namaz-timings/${c[0]}/"><b>${c[1]} prayer times</b> <span dir="rtl" lang="ur"> · ${c[2]}</span></a>`).join('')}</div>`).join('\n')}</div>`,
-}));
-
-
-// ---------- Ramadan 2027 timetables ----------
-const RAMADAN_START = Date.UTC(2027, 1, 8); // expected 1 Ramadan 1448 (moon sighting may shift ±1 day)
+const _bn = new Date(Date.now() + 5 * 36e5);
+const BUILD_DAY = new Date(Date.UTC(_bn.getUTCFullYear(), _bn.getUTCMonth(), _bn.getUTCDate()));
+const cityUrls = require('./lib/pages-cities')({ write, page, playLink, SITE, MONTHS });
+const toolUrls = require('./lib/pages-tools')({ write, page, playLink, SITE });
 const ramadanUrls = [];
-const ramadanCities = cities.filter((c) => ['Pakistan', 'Saudi Arabia', 'UAE', 'India', 'Bangladesh'].includes(c[3]));
-for (const [slug, name, urName, country, lat, lng, tz, mkey] of ramadanCities) {
-  const m = PT.METHODS[mkey];
-  const rows = [];
-  for (let i = 0; i < 30; i++) {
-    const d = new Date(RAMADAN_START + i * 864e5);
-    const t = PT.compute(d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate(), lat, lng, tz, m);
-    rows.push(`<tr><td>${i + 1}</td><td>${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]}</td><td><b>${PT.fmt(t.fajr)}</b></td><td><b>${PT.fmt(t.maghrib)}</b></td></tr>`);
-  }
-  const url = `${SITE}/ramadan-2027/${slug}/`;
-  ramadanUrls.push(url);
-  const cta = playLink('ramadan_' + slug);
-  write(`ramadan-2027/${slug}/index.html`, page({
-    title: `Ramadan 2027 ${name} Sehri & Iftar Timetable | Ramzan Calendar ${name}`,
-    description: `Ramadan 1448 (2027) sehri and iftar times for ${name}, ${country}: full 30-day Ramzan timetable from the expected start on 8 February 2027. ${urName} رمضان ۲۰۲۷ سحری و افطار کے اوقات۔`,
-    keywords: `ramadan 2027 ${name.toLowerCase()}, sehri time ${name.toLowerCase()}, iftar time ${name.toLowerCase()}, ramzan calendar 2027 ${name.toLowerCase()}, ${urName} سحری افطار`,
-    canonical: url,
-    body: `<div class="wrap">
-<h1>Ramadan 2027 Sehri &amp; Iftar Timetable: ${name}</h1>
-<p style="font-size:1.2rem;margin-top:-8px" dir="rtl" lang="ur">${urName}: رمضان ۲۰۲۷ سحری و افطار کے اوقات</p>
-<div class="topcta"><img src="/img/icon.png" alt="Islam 365"><div>Get <b>sehri and iftar reminders for ${name}</b> every day of Ramadan with the free Islam 365 app.</div><a href="${cta}" rel="noopener">Install</a></div>
-<p>Ramadan 1448 is <b>expected to begin on Monday 8 February 2027</b> (first fast), subject to the sighting of the moon in ${country}. If Ramadan starts a day later, use the next row.</p>
-<table class="month"><tr><th>Roza</th><th>Date</th><th>Sehri ends (Fajr)</th><th>Iftar (Maghrib)</th></tr>${rows.join('')}</table>
-<p><small>Calculation: ${m.name}. Many local calendars stop sehri a few minutes before Fajr as a precaution; follow your local masjid's timetable.</small></p>
-<div class="midcta">📲 <a href="${cta}" rel="noopener">Install Islam 365</a> to see today's sehri and iftar on your home screen, get reminders, and read the Quran with Urdu translation throughout Ramadan.</div>
-<h2>Duas for Ramadan</h2>
-<p><a href="/blog/sehri-iftar-ki-dua-roza/">Dua for breaking the fast</a> · <a href="/blog/laylatul-qadr-ki-dua-aakhri-ashra/">Laylatul Qadr dua</a> · <a href="/blog/ramadan-2027-preparation-checklist/">Ramadan preparation checklist</a> · <a href="/blog/zakat-al-fitr-fitrana-guide/">Zakat al-Fitr</a></p>
-<h2>Other cities</h2>
-<p>${ramadanCities.filter((c) => c[0] !== slug).map((c) => `<a href="/ramadan-2027/${c[0]}/">${c[1]}</a>`).join(' · ')}</p>
-</div><style>table.month td,table.month th{padding:6px 5px;text-align:center}</style>`,
-  }));
-}
-write('ramadan-2027/index.html', page({
-  title: 'Ramadan 2027 Calendar: Sehri & Iftar Times for Pakistan, Saudi Arabia, UAE, India | Islam 365',
-  description: 'Ramadan 1448 (2027) sehri and iftar timetables for Karachi, Lahore, Islamabad, Makkah, Madinah, Dubai, Delhi and more. Expected to start 8 February 2027.',
-  keywords: 'ramadan 2027, ramzan calendar 2027, sehri iftar time 2027, ramadan timetable 2027 pakistan',
-  canonical: `${SITE}/ramadan-2027/`,
-  body: `<div class="wrap"><h1>Ramadan 2027 Sehri &amp; Iftar Timetables</h1><p>Ramadan 1448 is expected to begin on <b>8 February 2027</b>, depending on the moon. Choose your city for the full 30-day timetable, or <a href="${playLink('ramadan_index')}">install Islam 365</a> for daily sehri and iftar on your phone.</p>
-<div class="list">${ramadanCities.map((c) => `<a href="/ramadan-2027/${c[0]}/"><b>${c[1]} Ramadan timetable</b> <span dir="rtl" lang="ur"> · ${c[2]}</span></a>`).join('')}</div></div>`,
-}));
 
 // ---------- sitemap / robots / vercel ----------
-const urls = [`${SITE}/`, `${SITE}/blog/`, ...posts.map((p) => `${SITE}/blog/${p.slug}/`), `${SITE}/namaz-timings/`, ...cityUrls, `${SITE}/ramadan-2027/`, ...ramadanUrls, `${SITE}/privacy.html`];
+const urls = [`${SITE}/`, `${SITE}/blog/`, ...posts.map((p) => `${SITE}/blog/${p.slug}/`), ...cityUrls, ...toolUrls, `${SITE}/privacy.html`];
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${u}</loc><lastmod>${BUILD_DAY.toISOString().slice(0, 10)}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 write('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 fs.copyFileSync(path.join(__dirname, 'lib', 'praytimes.js'), path.join(OUT, 'praytimes.js'));
