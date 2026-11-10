@@ -14,7 +14,7 @@ const css = `
 :root{--g:#0b7a55;--gd:#075c40;--bg:#f6faf7;--ink:#14231c;--mut:#5b6b63;--card:#fff}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
 a{color:var(--g)}header{background:#0d3449;color:#fff}header .in{max-width:1000px;margin:auto;display:flex;align-items:center;gap:12px;padding:12px 20px}
-header img{width:40px;height:40px;border-radius:10px}header a{color:#fff;text-decoration:none;font-weight:700}header nav{margin-left:auto;display:flex;gap:18px}header nav a{font-weight:500;opacity:.9}
+header img{width:40px;height:40px;border-radius:10px}header a{color:#fff;text-decoration:none;font-weight:700}header nav{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap;justify-content:flex-end}header nav a{font-weight:500;opacity:.9}
 .wrap{max-width:780px;margin:auto;padding:24px 20px 60px}.hero{background:linear-gradient(135deg,#0d3449,#0b7a55);color:#fff;text-align:center;padding:56px 20px}
 .hero h1{font-size:2.2rem;margin:.2em 0}.hero p{font-size:1.15rem;opacity:.95;max-width:640px;margin:auto}
 .btn{display:inline-block;background:#fff;color:var(--gd);font-weight:700;padding:14px 26px;border-radius:999px;text-decoration:none;margin-top:22px}
@@ -31,7 +31,7 @@ td,th{border:1px solid #d9e5de;padding:8px 10px;text-align:start}th{background:#
 [lang=ur] article,[lang=ur] .list{font-family:'Noto Nastaliq Urdu','Jameel Noori Nastaleeq',serif;line-height:2.3;font-size:1.12rem}
 footer{text-align:center;color:var(--mut);font-size:.9rem;padding:30px 20px 90px}
 .topcta{display:flex;align-items:center;gap:12px;background:#e8f3ed;border:1px solid #cfe6da;border-radius:14px;padding:12px 14px;margin:14px 0 6px}.topcta img{width:44px;height:44px;border-radius:10px}.topcta div{flex:1;font-size:.95rem;line-height:1.6}[lang=ur] .topcta div{font-size:.9rem;line-height:2}.topcta a{background:var(--g);color:#fff;text-decoration:none;font-weight:700;padding:9px 14px;border-radius:999px;white-space:nowrap}.midcta{border-inline-start:4px solid var(--g);background:#fff;border-radius:10px;padding:12px 16px;margin:22px 0;box-shadow:0 1px 4px rgba(0,0,0,.06)}.midcta a{font-weight:700}.sticky{position:fixed;left:0;right:0;bottom:0;z-index:9;background:#0d3449;color:#fff;display:flex;align-items:center;gap:10px;padding:10px 14px;box-shadow:0 -2px 10px rgba(0,0,0,.2)}.sticky img{width:36px;height:36px;border-radius:8px}.sticky span{flex:1;font-size:.9rem;line-height:1.3}.sticky a{background:#fff;color:var(--gd);font-weight:700;text-decoration:none;padding:9px 16px;border-radius:999px;white-space:nowrap}@media(min-width:900px){.sticky{left:auto;right:20px;bottom:20px;border-radius:16px;max-width:380px}}
-@media(max-width:600px){.hero h1{font-size:1.7rem}.shots img{height:360px}header nav{gap:12px;font-size:.9rem}}`;
+@media(max-width:600px){.hero h1{font-size:1.7rem}.shots img{height:360px}header nav{gap:10px;font-size:.82rem}}`;
 
 function page({ title, description, keywords = '', lang = 'en', canonical, body, jsonld, image = `${SITE}/img/feature-graphic.png` }) {
   const fonts = lang === 'ur'
@@ -56,7 +56,7 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</script
 </head>
 <body>
 <header><div class="in" dir="ltr"><img src="/img/icon.png" alt="Islam 365 icon"><a href="/">Islam 365</a>
-<nav><a href="/namaz-timings/">Prayer times</a><a href="/blog/">Blog</a><a href="${playLink('header')}" rel="noopener">Download</a></nav></div></header>
+<nav><a href="/namaz-timings/">Prayer times</a><a href="/ramadan-2027/">Ramadan</a><a href="/blog/">Blog</a><a href="${playLink('header')}" rel="noopener">Download</a></nav></div></header>
 ${body}
 ${lang === 'ur'
   ? `<div class="sticky" dir="rtl"><img src="/img/icon.png" alt=""><span><b>Islam 365</b><br>نماز، قرآن، تسبیح · مفت</span><a href="${playLink('sticky')}" rel="noopener">انسٹال کریں</a></div>`
@@ -205,8 +205,53 @@ write('namaz-timings/index.html', page({
 ${Object.entries(byCountry).map(([country, list]) => `<h2>${country}</h2><div class="list">${list.map((c) => `<a href="/namaz-timings/${c[0]}/"><b>${c[1]} prayer times</b> <span dir="rtl" lang="ur"> · ${c[2]}</span></a>`).join('')}</div>`).join('\n')}</div>`,
 }));
 
+
+// ---------- Ramadan 2027 timetables ----------
+const RAMADAN_START = Date.UTC(2027, 1, 8); // expected 1 Ramadan 1448 (moon sighting may shift ±1 day)
+const ramadanUrls = [];
+const ramadanCities = cities.filter((c) => ['Pakistan', 'Saudi Arabia', 'UAE', 'India', 'Bangladesh'].includes(c[3]));
+for (const [slug, name, urName, country, lat, lng, tz, mkey] of ramadanCities) {
+  const m = PT.METHODS[mkey];
+  const rows = [];
+  for (let i = 0; i < 30; i++) {
+    const d = new Date(RAMADAN_START + i * 864e5);
+    const t = PT.compute(d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate(), lat, lng, tz, m);
+    rows.push(`<tr><td>${i + 1}</td><td>${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]}</td><td><b>${PT.fmt(t.fajr)}</b></td><td><b>${PT.fmt(t.maghrib)}</b></td></tr>`);
+  }
+  const url = `${SITE}/ramadan-2027/${slug}/`;
+  ramadanUrls.push(url);
+  const cta = playLink('ramadan_' + slug);
+  write(`ramadan-2027/${slug}/index.html`, page({
+    title: `Ramadan 2027 ${name} Sehri & Iftar Timetable | Ramzan Calendar ${name}`,
+    description: `Ramadan 1448 (2027) sehri and iftar times for ${name}, ${country}: full 30-day Ramzan timetable from the expected start on 8 February 2027. ${urName} رمضان ۲۰۲۷ سحری و افطار کے اوقات۔`,
+    keywords: `ramadan 2027 ${name.toLowerCase()}, sehri time ${name.toLowerCase()}, iftar time ${name.toLowerCase()}, ramzan calendar 2027 ${name.toLowerCase()}, ${urName} سحری افطار`,
+    canonical: url,
+    body: `<div class="wrap">
+<h1>Ramadan 2027 Sehri &amp; Iftar Timetable: ${name}</h1>
+<p style="font-size:1.2rem;margin-top:-8px" dir="rtl" lang="ur">${urName}: رمضان ۲۰۲۷ سحری و افطار کے اوقات</p>
+<div class="topcta"><img src="/img/icon.png" alt="Islam 365"><div>Get <b>sehri and iftar reminders for ${name}</b> every day of Ramadan with the free Islam 365 app.</div><a href="${cta}" rel="noopener">Install</a></div>
+<p>Ramadan 1448 is <b>expected to begin on Monday 8 February 2027</b> (first fast), subject to the sighting of the moon in ${country}. If Ramadan starts a day later, use the next row.</p>
+<table class="month"><tr><th>Roza</th><th>Date</th><th>Sehri ends (Fajr)</th><th>Iftar (Maghrib)</th></tr>${rows.join('')}</table>
+<p><small>Calculation: ${m.name}. Many local calendars stop sehri a few minutes before Fajr as a precaution; follow your local masjid's timetable.</small></p>
+<div class="midcta">📲 <a href="${cta}" rel="noopener">Install Islam 365</a> to see today's sehri and iftar on your home screen, get reminders, and read the Quran with Urdu translation throughout Ramadan.</div>
+<h2>Duas for Ramadan</h2>
+<p><a href="/blog/sehri-iftar-ki-dua-roza/">Dua for breaking the fast</a> · <a href="/blog/laylatul-qadr-ki-dua-aakhri-ashra/">Laylatul Qadr dua</a> · <a href="/blog/ramadan-2027-preparation-checklist/">Ramadan preparation checklist</a> · <a href="/blog/zakat-al-fitr-fitrana-guide/">Zakat al-Fitr</a></p>
+<h2>Other cities</h2>
+<p>${ramadanCities.filter((c) => c[0] !== slug).map((c) => `<a href="/ramadan-2027/${c[0]}/">${c[1]}</a>`).join(' · ')}</p>
+</div><style>table.month td,table.month th{padding:6px 5px;text-align:center}</style>`,
+  }));
+}
+write('ramadan-2027/index.html', page({
+  title: 'Ramadan 2027 Calendar: Sehri & Iftar Times for Pakistan, Saudi Arabia, UAE, India | Islam 365',
+  description: 'Ramadan 1448 (2027) sehri and iftar timetables for Karachi, Lahore, Islamabad, Makkah, Madinah, Dubai, Delhi and more. Expected to start 8 February 2027.',
+  keywords: 'ramadan 2027, ramzan calendar 2027, sehri iftar time 2027, ramadan timetable 2027 pakistan',
+  canonical: `${SITE}/ramadan-2027/`,
+  body: `<div class="wrap"><h1>Ramadan 2027 Sehri &amp; Iftar Timetables</h1><p>Ramadan 1448 is expected to begin on <b>8 February 2027</b>, depending on the moon. Choose your city for the full 30-day timetable, or <a href="${playLink('ramadan_index')}">install Islam 365</a> for daily sehri and iftar on your phone.</p>
+<div class="list">${ramadanCities.map((c) => `<a href="/ramadan-2027/${c[0]}/"><b>${c[1]} Ramadan timetable</b> <span dir="rtl" lang="ur"> · ${c[2]}</span></a>`).join('')}</div></div>`,
+}));
+
 // ---------- sitemap / robots / vercel ----------
-const urls = [`${SITE}/`, `${SITE}/blog/`, ...posts.map((p) => `${SITE}/blog/${p.slug}/`), `${SITE}/namaz-timings/`, ...cityUrls, `${SITE}/privacy.html`];
+const urls = [`${SITE}/`, `${SITE}/blog/`, ...posts.map((p) => `${SITE}/blog/${p.slug}/`), `${SITE}/namaz-timings/`, ...cityUrls, `${SITE}/ramadan-2027/`, ...ramadanUrls, `${SITE}/privacy.html`];
 write('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${u}</loc><lastmod>${BUILD_DAY.toISOString().slice(0, 10)}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 write('robots.txt', `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
 fs.copyFileSync(path.join(__dirname, 'lib', 'praytimes.js'), path.join(OUT, 'praytimes.js'));
